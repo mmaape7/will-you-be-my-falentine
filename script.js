@@ -2,7 +2,6 @@ const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const message = document.getElementById("message");
 const heartsContainer = document.querySelector(".hearts");
-const music = document.getElementById("bgMusic");
 
 /* No button runs away */
 noBtn.addEventListener("mouseover", () => {
@@ -14,13 +13,16 @@ noBtn.addEventListener("mouseover", () => {
 /* Yes button */
 yesBtn.addEventListener("click", () => {
   message.textContent = "YAY!! 💘🥰 I knew you'd say yes, Bubee!";
-  playMusic();
-  startHearts();
+  
+  startHearts(); // Hearts animation stays the same
+
+  // Start YouTube music
+  const player = document.getElementById("musicPlayer");
+  player.src += "&autoplay=1"; // triggers music after click
 });
 
+
 /* Music (plays only after click to satisfy browser rules) */
-function playMusic() {
-  music.volume = 0.6;
   document.getElementById("musicPlayer").src += "&autoplay=1";
 .catch(() => {});
 }
