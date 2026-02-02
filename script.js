@@ -1,48 +1,89 @@
-const noBtn = document.getElementById("noBtn");
-const yesBtn = document.getElementById("yesBtn");
-const message = document.getElementById("message");
-const heartsContainer = document.querySelector(".hearts");
+* {
+  box-sizing: border-box;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
 
-/* No button runs away */
-noBtn.addEventListener("mouseover", () => {
-  const x = Math.random() * 200 - 100;
-  const y = Math.random() * 200 - 100;
-  noBtn.style.transform = `translate(${x}px, ${y}px)`;
-});
+body {
+  height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
 
-/* Yes button */
-yesBtn.addEventListener("click", () => {
-  message.textContent = "YAY!! 💘🥰 I knew you'd say yes, Bubee!";
-  
-  startHearts(); // Hearts animation stays the same
+/* Card */
+.card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  z-index: 2;
+}
 
-  // Start YouTube music
-  const player = document.getElementById("musicPlayer");
-  player.src += "&autoplay=1"; // triggers music after click
-});
+h1 {
+  margin-bottom: 30px;
+}
 
+/* Buttons */
+.buttons {
+  position: relative;
+  height: 80px;
+}
 
-/* Music (plays only after click to satisfy browser rules) */
-  document.getElementById("musicPlayer").src += "&autoplay=1";
-.catch(() => {});
+button {
+  padding: 12px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+#yesBtn {
+  background-color: #ff4d6d;
+  color: white;
+}
+
+#noBtn {
+  background-color: #ccc;
+  color: black;
+  position: absolute;
+  left: 120px;
+}
+
+#message {
+  margin-top: 25px;
+  font-size: 22px;
+  color: #ff4d6d;
 }
 
 /* Hearts animation */
-function startHearts() {
-  setInterval(createHeart, 300);
+.hearts {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 1;
 }
 
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.innerHTML = "💖";
+.heart {
+  position: absolute;
+  color: #ff4d6d;
+  font-size: 20px;
+  animation: floatUp 6s linear forwards;
+}
 
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = Math.random() * 20 + 15 + "px";
-
-  heartsContainer.appendChild(heart);
-
-  setTimeout(() => {
-    heart.remove();
-  }, 6000);
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-800px) scale(1.5);
+    opacity: 0;
+  }
 }
