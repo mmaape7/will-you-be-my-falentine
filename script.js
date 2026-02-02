@@ -21,7 +21,8 @@ yesBtn.addEventListener("click", () => {
 /* Music (plays only after click to satisfy browser rules) */
 function playMusic() {
   music.volume = 0.6;
-  music.play().catch(() => {});
+  document.getElementById("musicPlayer").src += "&autoplay=1";
+.catch(() => {});
 }
 
 /* Hearts animation */
